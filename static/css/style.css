@@ -1,0 +1,505 @@
+:root {
+	--primary-bg: #13151a;
+	--secondary-bg: #1e2026;
+	--card-bg: #282b34;
+	--input-bg: #1e2026;
+	--accent-color: #3498db;
+	--success-color: #2ecc71;
+	--danger-color: #e74c3c;
+	--text-primary: #ffffff;
+	--text-secondary: #a0a0a0;
+	--text-bright: #e2e2e2;
+	--border-color: rgba(255, 255, 255, 0.1);
+	--border-radius: 6px;
+	--transition-speed: 0.3s;
+	--header-height: 70px;
+}
+
+body {
+	min-height: 100vh;
+	background-color: var(--primary-bg);
+	color: var(--text-primary);
+	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+	padding-top: var(--header-height);
+}
+
+/* Header Styling */
+.navbar {
+	background-color: var(--card-bg) !important;
+	border-bottom: 1px solid var(--border-color);
+	height: var(--header-height);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1030;
+	padding: 0;
+}
+
+.navbar .container {
+	height: 100%;
+}
+
+.navbar-brand {
+	color: var(--text-primary) !important;
+	font-weight: 600;
+	font-size: 1.4rem;
+	position: relative;
+	padding: 0;
+}
+
+.navbar-brand::before {
+	content: "";
+	position: absolute;
+	left: -15px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 4px;
+	height: 24px;
+	background: var(--accent-color);
+	border-radius: 2px;
+}
+
+/* Grid Layout */
+.container {
+	max-width: 1400px;
+	padding: 0 20px;
+}
+
+.row {
+	margin: 0 -10px;
+}
+
+.col-md-6,
+.col-12 {
+	padding: 0 10px;
+}
+
+/* Card Styling */
+.card {
+	background-color: var(--secondary-bg);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.card-header {
+	background-color: var(--card-bg);
+	border-bottom: 1px solid var(--border-color);
+	padding: 1rem 1.25rem;
+	display: flex;
+	align-items: center;
+	min-height: 60px;
+}
+
+.card-body {
+	background-color: var(--secondary-bg);
+	flex: 1;
+	padding: 1.25rem;
+}
+
+.card-body.p-0 {
+	padding: 0;
+}
+
+/* Form Controls */
+.form-control,
+.form-select {
+	background-color: var(--input-bg);
+	border: 1px solid var(--border-color);
+	color: var(--text-primary);
+	border-radius: var(--border-radius);
+	transition: all var(--transition-speed);
+	height: 42px;
+	padding: 0.5rem 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+	background-color: var(--input-bg);
+	border-color: var(--accent-color);
+	color: var(--text-primary);
+	box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.15);
+}
+
+.form-control::placeholder {
+	color: var(--text-secondary);
+}
+
+.form-label {
+	color: var(--text-secondary);
+	font-weight: 500;
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+}
+
+/* Tables */
+.table-responsive {
+	margin: 0;
+	border-radius: var(--border-radius);
+	max-height: calc(100vh - var(--header-height) - 300px);
+	min-height: 200px;
+	background-color: var(--secondary-bg);
+}
+
+.table {
+	margin: 0;
+	color: var(--text-secondary);
+	background-color: var(--secondary-bg);
+}
+
+/* Override Bootstrap's default background */
+.table > :not(caption) > * > * {
+	background-color: transparent !important;
+	box-shadow: none !important;
+}
+
+.table thead th {
+	background-color: var(--card-bg) !important;
+	color: var(--text-secondary);
+	font-weight: 500;
+	text-transform: uppercase;
+	font-size: 0.75rem;
+	letter-spacing: 0.05em;
+	padding: 1rem;
+	border-bottom: 2px solid var(--border-color);
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.table tbody tr {
+	background-color: var(--secondary-bg);
+	transition: background-color 0.2s ease;
+}
+
+.table tbody tr:nth-child(even) {
+	background-color: var(--card-bg);
+}
+
+.table tbody tr:hover {
+	background-color: var(--input-bg) !important;
+}
+
+.table tbody td {
+	padding: 1rem;
+	vertical-align: middle;
+	border-bottom: 1px solid var(--border-color);
+	color: var(--text-bright);
+	background-color: inherit !important;
+}
+
+/* Asset name styling in balance table */
+#balance-table .table tbody td:first-child {
+	color: var(--accent-color);
+	font-weight: 500;
+}
+
+/* Numeric values in tables */
+.table td:not(:first-child):not(:last-child) {
+	font-family: "Inter", monospace;
+	text-align: right;
+}
+
+/* Empty state styling */
+.table tbody tr td[colspan] {
+	text-align: center;
+	padding: 2rem;
+	color: var(--text-secondary);
+	font-style: italic;
+	background-color: var(--secondary-bg) !important;
+}
+
+/* Status badges in tables */
+.table .badge {
+	padding: 0.4em 0.8em;
+	font-size: 0.75rem;
+}
+
+/* Balance Table */
+#balance-table {
+	max-height: calc(100vh - var(--header-height) - 400px);
+	min-height: 200px;
+	overflow-y: auto;
+}
+
+/* Buttons */
+.btn {
+	border-radius: var(--border-radius);
+	padding: 0.5rem 1.5rem;
+	transition: all var(--transition-speed);
+	font-weight: 500;
+	height: 42px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.btn-success {
+	background-color: var(--success-color);
+	border: none;
+}
+
+.btn-success:hover {
+	background-color: #27ae60;
+}
+
+.btn-danger {
+	background-color: var(--danger-color);
+	border: none;
+}
+
+.btn-danger:hover {
+	background-color: #c0392b;
+}
+
+.btn-outline-primary {
+	color: var(--accent-color);
+	border-color: var(--accent-color);
+	background-color: transparent;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary.active {
+	color: var(--text-primary);
+	background-color: var(--accent-color);
+	border-color: var(--accent-color);
+}
+
+.btn-sm {
+	height: 32px;
+	padding: 0.25rem 1rem;
+	font-size: 0.875rem;
+}
+
+.btn-group {
+	background-color: var(--input-bg);
+	border-radius: var(--border-radius);
+	padding: 4px;
+}
+
+.btn-group .btn {
+	height: 32px;
+	border-radius: var(--border-radius);
+	padding: 0.25rem 1rem;
+	margin: 0 2px;
+}
+
+/* Badges */
+.badge {
+	padding: 0.5em 1em;
+	border-radius: 20px;
+	font-weight: 500;
+	font-size: 0.75rem;
+}
+
+.badge.bg-success {
+	background-color: var(--success-color) !important;
+}
+
+.badge.bg-danger {
+	background-color: var(--danger-color) !important;
+}
+
+.badge.bg-info {
+	background-color: var(--accent-color) !important;
+}
+
+.badge.bg-warning {
+	background-color: #f1c40f !important;
+	color: #000;
+}
+
+.badge.bg-secondary {
+	background-color: #7f8c8d !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+	.container {
+		padding: 0 15px;
+	}
+
+	.card-header {
+		padding: 0.75rem 1rem;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+
+	.btn-group {
+		width: 100%;
+		display: flex;
+	}
+
+	.btn-group .btn {
+		flex: 1;
+	}
+
+	.table-responsive {
+		max-height: 300px;
+	}
+
+	#balance-table {
+		max-height: 300px;
+	}
+
+	.navbar-brand {
+		font-size: 1.2rem;
+	}
+
+	.navbar-brand::before {
+		height: 20px;
+	}
+}
+
+/* Toast Notifications */
+.toast-container {
+	z-index: 1060;
+	margin-top: calc(var(--header-height) + 1rem);
+}
+
+.toast {
+	background-color: var(--card-bg);
+	border: 1px solid var(--border-color);
+	border-radius: var(--border-radius);
+	min-width: 300px;
+	opacity: 1;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.toast.bg-success {
+	border-left: 4px solid var(--success-color);
+}
+
+.toast.bg-danger {
+	border-left: 4px solid var(--danger-color);
+}
+
+.toast.bg-warning {
+	border-left: 4px solid #f1c40f;
+}
+
+.toast-header {
+	background-color: var(--secondary-bg);
+	color: var(--text-primary);
+	border-bottom: 1px solid var(--border-color);
+	padding: 0.75rem 1rem;
+	align-items: center;
+}
+
+.toast-header .btn-close {
+	filter: invert(1) grayscale(100%) brightness(200%);
+	opacity: 0.75;
+	margin-right: -0.375rem;
+}
+
+.toast-header .btn-close:hover {
+	opacity: 1;
+}
+
+.toast-body {
+	padding: 1rem;
+	color: var(--text-bright);
+}
+
+/* Toast animations */
+.toast.showing,
+.toast.hiding {
+	opacity: 0;
+}
+
+.toast.show {
+	opacity: 1;
+	transition: opacity 0.15s ease-in-out;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+	width: 1.5rem;
+	height: 1.5rem;
+	border: 2px solid rgba(255, 255, 255, 0.1);
+	border-radius: 50%;
+	border-top-color: var(--text-primary);
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--secondary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.table tr {
+	animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Connection status badge */
+#connection-status .badge {
+	font-size: 0.875rem;
+	padding: 0.5em 1em;
+}
+
+/* Card title */
+.card-title {
+	color: var(--text-primary);
+	font-weight: 500;
+}
+
+/* Form elements focus ring */
+.form-control:focus,
+.form-select:focus,
+.btn:focus {
+	outline: none;
+}
+
+#openOrdersTable,
+#recentTradesTable {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+.table td {
+	white-space: nowrap;
+	font-family: "Inter", monospace;
+}
+
+.table td:nth-child(5),
+.table td:nth-child(6),
+.table td:nth-child(7) {
+	font-family: "Inter", monospace;
+	text-align: right;
+}
